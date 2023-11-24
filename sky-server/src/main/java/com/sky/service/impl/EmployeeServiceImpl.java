@@ -77,8 +77,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         BeanUtils.copyProperties(employeeDTO, employee);
         //设置账号的状态 默认正常状态 1表正常 0锁定
         employee.setStatus(StatusConstant.ENABLE);
-        //设置密码
+        //设置密码 MD5
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
+        /**
+         * AutoFill公共字段自动补充 以下不再需要
         //设置当前创建时间和修改时间
         employee.setCreateTime(LocalDateTime.now());
         employee.setUpdateTime(LocalDateTime.now());
@@ -88,6 +90,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
+
+         **/
 
     }
 
@@ -132,8 +136,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee =new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
 
+        /**
+         * AutoFill公共字段自动补充 以下不再需要
         employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        employee.setUpdateUser(BaseContext.getCurrentId());*/
 
         employeeMapper.updata(employee);
     }
